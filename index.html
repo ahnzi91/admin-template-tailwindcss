@@ -12,12 +12,19 @@
       referrerpolicy="no-referrer"
     />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="main.js"></script>
   </head>
   <body class="bg-gray-100">
     <div class="flex h-screen">
-      <aside class="bg-gray-800 w-64 text-white py-7 px-2 space-y-6">
-        <div class="px-4 mb-6">
+      <aside
+        id="sidebar"
+        class="bg-gray-800 w-64 text-white py-7 px-2 space-y-6 z-10 inset-y-0 left-0 -translate-x-full lg:translate-x-0 absolute lg:relative transition duration-200"
+      >
+        <div class="px-4 mb-6 flex justify-between items-center">
           <h2 class="text-2xl font-semibold">대시보드</h2>
+          <button id="closeSidebar" class="text-white lg:hidden">
+            <i class="fas fa-times"></i>
+          </button>
         </div>
         <nav class="flex flex-col">
           <a
@@ -50,16 +57,24 @@
         <header
           class="flex justify-between items-center px-6 py-2 h-16 bg-white border-b-4 border-indigo-600"
         >
-          <div class="relative">
-            <span class="absolute left-0 inset-y-0 pl-3 flex items-center"
-              ><i class="fas fa-search text-gray-500"></i
-            ></span>
-            <input
-              type="text"
-              class="focus:border-indigo-600 h-10 w-64 pl-10 pr-4 rounded-md"
-              placeholder="검색"
-            />
+          <div class="flex items-center">
+            <button id="sidebarToggle" class="text-gray-500 lg:hidden p-2 mr-4">
+              <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Header - 검색 -->
+            <div class="relative">
+              <span class="absolute left-0 inset-y-0 pl-3 flex items-center"
+                ><i class="fas fa-search text-gray-500"></i
+              ></span>
+              <input
+                type="text"
+                class="focus:border-indigo-600 h-10 w-64 pl-10 pr-4 rounded-md"
+                placeholder="검색"
+              />
+            </div>
           </div>
+          <!-- Header - 알림 및 아바타 -->
           <div class="flex items-center gap-x-4">
             <button class="text-gray-600"><i class="fas fa-bell"></i></button>
             <button class="w-8 h-8 rounded-full overflow-hidden">
@@ -74,7 +89,9 @@
           <div class="container mx-auto px-6 py-8">
             <h3 class="text-gray-700 text-3xl font-medium">대시보드</h3>
             <!-- 대시보드 - 패널-->
-            <div class="mt-8 grid grid-cols-3 gap-6">
+            <div
+              class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 grid-cols-1"
+            >
               <div class="flex items-center bg-white rounded-md px-5 py-6">
                 <div
                   class="rounded-full bg-indigo-600 w-12 h-12 flex items-center justify-center bg-opacity-75"
